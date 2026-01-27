@@ -1,5 +1,5 @@
 @EndUserText.label: 'Booking BO projection view'
-@AccessControl.authorizationCheck: #CHECK
+@AccessControl.authorizationCheck: #NOT_ALLOWED
 @Search.searchable: true
 @Metadata.allowExtensions: true
 define view entity ZC_RAP_Booking_1131
@@ -33,7 +33,7 @@ define view entity ZC_RAP_Booking_1131
        LocalLastChangedAt,
 
        /* associations */
-       _Travel : redirected to parent ZC_RAP_Travel_1131,
+       _Travel : redirected to parent ZC_RAP_TRAVEL_1131,
        _Customer,
        _Carrier,
        _Connection,

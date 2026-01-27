@@ -1,9 +1,9 @@
 @EndUserText.label: 'Travel BO projection view'
-@AccessControl.authorizationCheck: #CHECK
+@AccessControl.authorizationCheck: #NOT_ALLOWED
 @Search.searchable: true
 @Metadata.allowExtensions: true
 define root view entity ZC_RAP_TRAVEL_1131
- as projection on ZI_RAP_Travel_1131 as Travel
+ as projection on ZI_RAP_TRAVEL_1131 as Travel
  {
    key TravelUUID,
        @Search.defaultSearchElement: true

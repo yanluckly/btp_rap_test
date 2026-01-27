@@ -1,0 +1,12 @@
+@EndUserText.label: 'Access Contral for ZC_RAP_Travel_1131'
+@MappingRole: true
+define role ZC_RAP_TRAVEL_1131  { 
+
+    grant
+        select
+            on
+                ZC_RAP_TRAVEL_1131
+                    where
+                        inheriting conditions from entity ZI_RAP_TRAVEL_1131;
+
+}

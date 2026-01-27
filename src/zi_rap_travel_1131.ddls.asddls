@@ -1,4 +1,4 @@
-@AccessControl.authorizationCheck: #NOT_REQUIRED
+@AccessControl.authorizationCheck: #NOT_ALLOWED
 @EndUserText.label: 'Travel BO view'
 define root view entity ZI_RAP_TRAVEL_1131 as select from zrap_atrav_1131 as Travel
 
