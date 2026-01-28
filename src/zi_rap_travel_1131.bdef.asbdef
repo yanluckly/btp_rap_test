@@ -1,16 +1,19 @@
 managed;
+with draft;
 
 define behavior for ZI_RAP_Travel_1131 alias Travel
 implementation in class zbp_i_rap_travel_1131 unique
 persistent table zrap_atrav_1131
-lock master
+draft table zrap_dtrav_1131
+lock master total etag LastChangedAt
 authorization master ( instance )
 etag master LocalLastChangedAt
 {
   create;
   update;
   delete;
-  association _Booking { create; }
+
+  association _Booking { create; with draft; }
 
   field ( numbering : managed, readonly ) TravelUUID;
   field ( readonly  ) TravelId, TotalPrice, TravelStatus;
@@ -28,6 +31,13 @@ etag master LocalLastChangedAt
   validation validateAgency   on save { field AgencyID; create; }
   validation validateCustomer on save { field CustomerID; create; }
   validation validateDates    on save { field BeginDate, EndDate; create; }
+
+  draft determine action Prepare
+  {
+    validation validateAgency;
+    validation validateCustomer;
+    validation validateDates;
+  }
 
   mapping for zrap_atrav_1131
   {
@@ -53,6 +63,7 @@ etag master LocalLastChangedAt
 define behavior for ZI_RAP_Booking_1131 alias Booking
 implementation in class zbp_i_rap_booking_1131 unique
 persistent table zrap_abook_1131
+draft table zrap_dbook_1131
 lock dependent by _Travel
 authorization dependent by _Travel
 etag master LocalLastChangedAt
@@ -60,7 +71,7 @@ etag master LocalLastChangedAt
   update;
   delete;
 
-  association _Travel;
+  association _Travel { with draft; }
 
   field ( numbering : managed, readonly ) BookingUUID;
   field ( readonly ) TravelUUID, BookingId;
